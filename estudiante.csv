@@ -1,0 +1,23 @@
+dni,libreta,nombre,apellido,edad,genero,ciudad
+41724302,9999,Agustin,Carmusciano,24,Masculino,Olavarria
+43864499,8888,Lucas,Carmusciano,21,Masculino,Olavarria
+12345001,56789001,Martin,Gonzalez,23,Masculino,Buenos Aires
+23456002,67890002,Sofia,Fernandez,22,Femenino,Cordoba
+34567003,78901003,Mateo,Lopez,20,Masculino,Rosario
+45678004,89012004,Valentina,Martinez,24,Femenino,Mendoza
+56789005,90123005,Benjamin,Sanchez,21,Masculino,La Plata
+67890006,12345006,Emma,Perez,22,Femenino,Mar del Plata
+78901007,23456007,Lucas,Rodriguez,25,Masculino,Santa Fe
+89012008,34567008,Sofia,Gomez,20,Femenino,Salta
+90123009,45678009,Matias,Diaz,23,Masculino,San Juan
+12345010,56789010,Maia,Fernandez,22,Femenino,Cordoba
+23456011,67890011,Lucas,Gonzalez,21,Masculino,Buenos Aires
+34567012,78901012,Sofia,Smith,24,Femenino,Rosario
+45678013,89012013,Thiago,Gomez,20,Masculino,La Plata
+56789014,90123014,Valentina,Perez,23,Femenino,Mendoza
+67890015,12345015,Martin,Rodriguez,22,Masculino,Mar del Plata
+78901016,23456016,Emilia,Sanchez,25,Femenino,Santa Fe
+89012017,34567017,Benjamin,Lopez,20,Masculino,Salta
+90123018,45678018,Martina,Martinez,24,Femenino,San Juan
+12345019,56789019,Sofio,Fernandez,21,Masculino,Cordoba
+23456020,67890020,Emma,Gonzalez,22,Femenino,Buenos Aires
