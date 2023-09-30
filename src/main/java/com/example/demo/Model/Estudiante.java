@@ -19,12 +19,11 @@ public class Estudiante {
     private String genero;
     private String ciudad;
 
-    @OneToMany(mappedBy = "id.estudiante")
+    @OneToMany(mappedBy = "inscripcionId.estudiante")
     private List<InscripcionCarrera> inscripciones;
 
     public Estudiante(int dni, int libretaUniversitaria, String nombre, String apellido, int edad, String genero, String ciudad){
         this.estudianteId = new EstudianteId(dni, libretaUniversitaria);
-        this.nombre=nombre;
         this.apellido=apellido;
         this.nombre=nombre;
         this.edad=edad;

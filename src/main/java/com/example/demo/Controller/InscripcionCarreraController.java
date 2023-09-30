@@ -1,7 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Model.Carrera;
-import com.example.demo.Model.InscripcionCarrera;
+import com.example.demo.DTO.InscripcionDTO.InscripcionDTO;
 import com.example.demo.Repositories.InscripcionCarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ public class InscripcionCarreraController {
     private InscripcionCarreraRepository icr;
 
     @GetMapping("/inscripciones")
-    public Iterable<InscripcionCarrera> getCarreras(){return icr.findAll();}
+    public Iterable<InscripcionDTO> getCarreras(){return icr.findAllInscripciones();}
 
 
 

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class InscripcionCarrera {
     @EmbeddedId
-    private InscripcionCarreraId id;
+    private InscripcionCarreraId inscripcionId;
 
     private int antiguedad;
     private boolean graduado;
@@ -15,7 +15,7 @@ public class InscripcionCarrera {
         this.antiguedad = antiguedad;
         this.graduado = graduado;
         this.anioInscripcion = anioInscripcion;
-        this.id = new InscripcionCarreraId();
+        this.inscripcionId = new InscripcionCarreraId();
     }
 
     public InscripcionCarrera() {
@@ -41,15 +41,15 @@ public class InscripcionCarrera {
 
 
     public void setEstudiante(Estudiante estudiante) {
-        this.id.setEstudiante(estudiante);
+        this.inscripcionId.setEstudiante(estudiante);
     }
 
     public void setCarrera(Carrera carrera) {
-        this.id.setCarrera(carrera);
+        this.inscripcionId.setCarrera(carrera);
     }
 
     public InscripcionCarreraId getId(){
-        return id;
+        return inscripcionId;
     }
     public int getAnioInscripcion() {
         return anioInscripcion;

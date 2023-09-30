@@ -12,7 +12,7 @@ public class Carrera {
     private String nombre;
 
     private int duracion;
-    @OneToMany(mappedBy = "id.carrera")
+    @OneToMany(mappedBy = "inscripcionId.carrera")
     private List<InscripcionCarrera> inscripciones;
 
     public Carrera(int id, String nombre, int duracion){

@@ -1,38 +1,40 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DTO.EstudianteDTO.EstudianteDTO;
+import com.example.demo.Services.EstudianteServiceImpl;
+import com.example.demo.Services.Interfaces.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.Model.Estudiante;
-import com.example.demo.Repositories.EstudianteRepository;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/estudiantes")
 public class EstudianteController {
 
     @Autowired
-    private EstudianteRepository er;
+    private EstudianteService es;
 
-    @GetMapping("/estudiantes")
-    public Iterable<Estudiante> getEstudiantes(){return er.findAll();}
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    public List<EstudianteDTO> getEstudiantes(){return es.findAllEstudiantes();}
 
-    @GetMapping("/estudiantePorNombre/{name}")
-    public Iterable<Estudiante> getEstudianteByName(@PathVariable String name){
-        return er.buscarPorNombre(name);
+
+    @RequestMapping(value="/orderBy/{orden}", method=RequestMethod.GET)
+    public List<EstudianteDTO> getByOrder(@PathVariable String orden){
+        return es.findAllEstudiantes(orden);
     }
 
-    @PostMapping("/estudiante")
-    public Estudiante newEstudiante(Estudiante estudiante){
-        return er.save(estudiante);
+    @RequestMapping(value="/genre/{genero}", method=RequestMethod.GET)
+    public List<EstudianteDTO> getByGenero(@PathVariable String genero){
+        return es.buscarPorGenero(genero);
     }
 
-    @GetMapping("/saludo")
-    public String saludo(){
-        return "HOLA";
+    @RequestMapping(value="/getByLibreta/{libreta}", method=RequestMethod.GET)
+    public EstudianteDTO getByGenero(@PathVariable int libreta){
+        return es.buscarPorLibreta(libreta);
     }
 
 }
