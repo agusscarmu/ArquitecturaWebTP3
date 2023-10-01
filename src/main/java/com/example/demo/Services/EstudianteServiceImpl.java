@@ -1,6 +1,7 @@
 package com.example.demo.Services;
 
 import com.example.demo.DTO.EstudianteDTO.EstudianteDTO;
+import com.example.demo.Model.Estudiante;
 import com.example.demo.Repositories.EstudianteRepository;
 import com.example.demo.Services.Interfaces.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,11 @@ public class EstudianteServiceImpl implements EstudianteService {
     @Override
     public EstudianteDTO buscarPorLibreta(int libreta) {
         return er.buscarPorLibretaUniversitaria(libreta);
+    }
+
+    @Override
+    public Estudiante darAlta(Estudiante estudiante) {
+        er.save(estudiante);
+        return estudiante;
     }
 }

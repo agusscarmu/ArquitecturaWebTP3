@@ -1,6 +1,8 @@
 package com.example.demo.DTO.CarreraDTO;
 
-public class CarreraDTO {
+import java.io.Serializable;
+
+public class CarreraDTO implements Serializable {
     private String nombre;
     private int duracion,id;
 

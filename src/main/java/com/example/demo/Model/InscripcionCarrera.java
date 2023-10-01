@@ -1,6 +1,7 @@
 package com.example.demo.Model;
 import com.example.demo.Model.ClavesCompuestas.InscripcionCarreraId;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 public class InscripcionCarrera {
@@ -9,6 +10,7 @@ public class InscripcionCarrera {
 
     private int antiguedad;
     private boolean graduado;
+    @Getter
     private int anioInscripcion;
 
     public InscripcionCarrera(int antiguedad, boolean graduado, int anioInscripcion) {
@@ -19,7 +21,7 @@ public class InscripcionCarrera {
     }
 
     public InscripcionCarrera() {
-
+        this.inscripcionId = new InscripcionCarreraId();
     }
 
 
@@ -39,7 +41,6 @@ public class InscripcionCarrera {
         this.graduado = graduado;
     }
 
-
     public void setEstudiante(Estudiante estudiante) {
         this.inscripcionId.setEstudiante(estudiante);
     }
@@ -50,9 +51,6 @@ public class InscripcionCarrera {
 
     public InscripcionCarreraId getId(){
         return inscripcionId;
-    }
-    public int getAnioInscripcion() {
-        return anioInscripcion;
     }
 
     public void setAnioInscripcion(int anioInscripcion) {

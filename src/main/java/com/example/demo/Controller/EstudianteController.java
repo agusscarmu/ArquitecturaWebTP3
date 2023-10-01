@@ -4,6 +4,8 @@ import com.example.demo.DTO.EstudianteDTO.EstudianteDTO;
 import com.example.demo.Services.EstudianteServiceImpl;
 import com.example.demo.Services.Interfaces.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,4 +39,9 @@ public class EstudianteController {
         return es.buscarPorLibreta(libreta);
     }
 
+    @PostMapping("/nuevo")
+    public ResponseEntity<String> crearEstudiante(@RequestBody Estudiante estudiante) {
+        es.darAlta(estudiante);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Estudiante creado exitosamente");
+    }
 }
