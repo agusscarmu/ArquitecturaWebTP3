@@ -8,6 +8,7 @@ public class InscripcionCarrera {
     @EmbeddedId
     private InscripcionCarreraId inscripcionId;
 
+    //ACOMODAR CLAVES
     private int antiguedad;
     private boolean graduado;
     @Getter

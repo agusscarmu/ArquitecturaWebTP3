@@ -54,12 +54,10 @@ public class InscripcionCarreraServiceImpl implements InscripcionCarreraService 
     public InscripcionCarrera matricular(MatriculacionDTO matriculacionDTO) {
         InscripcionCarrera inscripcion = new InscripcionCarrera();
 
-        // Configurar los datos de la inscripción
         inscripcion.setAntiguedad(matriculacionDTO.getAntiguedad());
         inscripcion.setGraduado(matriculacionDTO.isGraduado());
         inscripcion.setAnioInscripcion(matriculacionDTO.getAnioInscripcion());
 
-        // Configurar la relación con el estudiante y la carrera
         Estudiante estudiante = obtenerEstudiantePorId(matriculacionDTO.getDni(),matriculacionDTO.getLibretaUniversitaria());
         Carrera carrera = obtenerCarreraPorId(matriculacionDTO.getIdCarrera()); // Supongamos que tienes un método para obtener la carrera por su ID.
 

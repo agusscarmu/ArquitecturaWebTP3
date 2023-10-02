@@ -35,7 +35,7 @@ public class InscripcionCarreraController {
     @PostMapping("/matricular")
     public ResponseEntity<String> matricularEstudiante(@RequestBody MatriculacionDTO matriculacionDTO) {
 
-        icr.matricular(matriculacionDTO);  // Supongo que tienes un servicio que realiza la matriculación.
+        icr.matricular(matriculacionDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Estudiante matriculado exitosamente");
     }
