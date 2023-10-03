@@ -8,23 +8,33 @@ public class InscripcionCarrera {
     @EmbeddedId
     private InscripcionCarreraId inscripcionId;
 
-    //ACOMODAR CLAVES
+    @ManyToOne
+    @JoinColumn(name = "idCarrera",insertable=false, updatable=false)
+    private Carrera carrera;
+
+    @ManyToOne
+    @JoinColumns({
+            @JoinColumn(name = "dni",insertable=false, updatable=false),
+            @JoinColumn(name = "libretaUniversitaria",insertable=false, updatable=false)
+    })
+    private Estudiante estudiante;
+
+
     private int antiguedad;
     private boolean graduado;
     @Getter
     private int anioInscripcion;
 
-    public InscripcionCarrera(int antiguedad, boolean graduado, int anioInscripcion) {
+    public InscripcionCarrera(int dni, int libretaUniversitaria, int idCarrera, int antiguedad, boolean graduado, int anioInscripcion) {
         this.antiguedad = antiguedad;
         this.graduado = graduado;
         this.anioInscripcion = anioInscripcion;
-        this.inscripcionId = new InscripcionCarreraId();
+        this.inscripcionId = new InscripcionCarreraId(dni, libretaUniversitaria, idCarrera);
     }
 
     public InscripcionCarrera() {
-        this.inscripcionId = new InscripcionCarreraId();
-    }
 
+    }
 
     public int getAntiguedad() {
         return antiguedad;
@@ -42,14 +52,6 @@ public class InscripcionCarrera {
         this.graduado = graduado;
     }
 
-    public void setEstudiante(Estudiante estudiante) {
-        this.inscripcionId.setEstudiante(estudiante);
-    }
-
-    public void setCarrera(Carrera carrera) {
-        this.inscripcionId.setCarrera(carrera);
-    }
-
     public InscripcionCarreraId getId(){
         return inscripcionId;
     }
@@ -57,4 +59,5 @@ public class InscripcionCarrera {
     public void setAnioInscripcion(int anioInscripcion) {
         this.anioInscripcion = anioInscripcion;
     }
+
 }

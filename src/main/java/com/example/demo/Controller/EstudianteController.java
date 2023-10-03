@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.DTO.EstudianteDTO.EstudianteDTO;
+import com.example.demo.Exceptions.EstudianteExistenteException;
 import com.example.demo.Services.EstudianteServiceImpl;
 import com.example.demo.Services.Interfaces.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,14 @@ public class EstudianteController {
 
     @PostMapping("/nuevo")
     public ResponseEntity<String> crearEstudiante(@RequestBody Estudiante estudiante) {
-        es.darAlta(estudiante);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Estudiante creado exitosamente");
+        try{
+            if(es.existeEstudiante(estudiante)){
+                throw new EstudianteExistenteException("El estudiante ya existe en la base de datos");
+            }
+            es.darAlta(estudiante);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Estudiante creado exitosamente");
+        }catch (EstudianteExistenteException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
+        }
     }
 }

@@ -17,4 +17,6 @@ public interface InscripcionCarreraService {
     List<InscripcionDTO> findAllInscripciones();
 
     InscripcionCarrera matricular(MatriculacionDTO matriculacionDTO);
+
+    boolean existeInscripcion(MatriculacionDTO matriculacionDTO);
 }

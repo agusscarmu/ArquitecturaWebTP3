@@ -4,6 +4,7 @@ import com.example.demo.DTO.EstudianteDTO.EstudianteDTO;
 import com.example.demo.DTO.InscripcionDTO.InscripcionDTO;
 import com.example.demo.DTO.InscripcionDTO.InscripcionesPorAnioDTO;
 import com.example.demo.DTO.InscripcionDTO.MatriculacionDTO;
+import com.example.demo.Exceptions.EstudianteInscriptoException;
 import com.example.demo.Services.Interfaces.InscripcionCarreraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,9 +36,17 @@ public class InscripcionCarreraController {
     @PostMapping("/matricular")
     public ResponseEntity<String> matricularEstudiante(@RequestBody MatriculacionDTO matriculacionDTO) {
 
-        icr.matricular(matriculacionDTO);
+        try{
+            if(icr.existeInscripcion(matriculacionDTO)){
+                throw new EstudianteInscriptoException("El estudiante ya se encuentra inscripto en la carrera");
+            }else{
+                icr.matricular(matriculacionDTO);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Estudiante matriculado exitosamente");
+                return ResponseEntity.status(HttpStatus.CREATED).body("Estudiante matriculado exitosamente");
+            }
+        } catch (EstudianteInscriptoException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
+        }
     }
 
 

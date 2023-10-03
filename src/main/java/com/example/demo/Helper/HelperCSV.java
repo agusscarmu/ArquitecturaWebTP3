@@ -59,35 +59,10 @@ public class HelperCSV {
         parser = CSVFormat.DEFAULT.withHeader().parse(new FileReader(csvFilePath));
 
         for (CSVRecord row : parser) {
-            Carrera c = cr.getReferenceById(Integer.parseInt(row.get("carrera")));
-            Estudiante e = er.buscarPorId(Integer.parseInt(row.get("dni")),Integer.parseInt(row.get("libretaUniversitaria")));
-            InscripcionCarrera ic = new InscripcionCarrera(Integer.parseInt(row.get("antiguedad")),row.get("graduado").equals("true"),Integer.parseInt(row.get("anioIngreso")));
-            ic.setCarrera(c);
-            ic.setEstudiante(e);
+            InscripcionCarrera ic = new InscripcionCarrera(Integer.parseInt(row.get("dni")),Integer.parseInt(row.get("libretaUniversitaria")),Integer.parseInt(row.get("carrera")),Integer.parseInt(row.get("antiguedad")),row.get("graduado").equals("true"),Integer.parseInt(row.get("anioIngreso")));
             icr.save(ic);
         }
     }
 
-//    public Carrera getCarrera(Integer id){
-//        for(Carrera carrera:carreras){
-//            if(carrera.getId() == id){
-//                return carrera;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public Estudiante getEstudiante(Integer dni, Integer libreta){
-//        for(Estudiante estudiante:estudiantes){
-//            if(estudiante.getEstudianteId().getDni() == dni
-//                    && estudiante.getEstudianteId().getLibretaUniversitaria() == libreta){
-//                return estudiante;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    private void insert(){
-//
-//    }
+
 }

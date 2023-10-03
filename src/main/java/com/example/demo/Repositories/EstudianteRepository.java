@@ -36,7 +36,6 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Integer>
     @Query(value = "SELECT NEW com.example.demo.DTO.EstudianteDTO.EstudianteDTO(e.estudianteId.dni, e.estudianteId.libretaUniversitaria, e.edad, e.nombre, e.apellido, e.genero, e.ciudad) FROM Estudiante e ORDER BY e.ciudad")
     List<EstudianteDTO> findAllOrderByCiudad();
 
-
 }
 
     

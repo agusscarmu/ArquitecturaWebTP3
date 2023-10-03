@@ -8,7 +8,9 @@ import com.example.demo.Model.ClavesCompuestas.EstudianteId;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import lombok.Getter;
 
+@Getter
 @Entity
 public class Estudiante {
     @EmbeddedId
@@ -19,7 +21,7 @@ public class Estudiante {
     private String genero;
     private String ciudad;
 
-    @OneToMany(mappedBy = "inscripcionId.estudiante")
+    @OneToMany(mappedBy = "estudiante")
     private List<InscripcionCarrera> inscripciones;
 
     public Estudiante(int dni, int libretaUniversitaria, String nombre, String apellido, int edad, String genero, String ciudad){
@@ -43,48 +45,24 @@ public class Estudiante {
         }
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
     }
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
-    public int getEdad() {
-        return edad;
-    }
-
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    public String getGenero() {
-        return genero;
     }
 
     public void setGenero(String genero) {
         this.genero = genero;
     }
 
-    public String getCiudad() {
-        return ciudad;
-    }
-
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
-    }
-
-    public List<InscripcionCarrera> getInscripciones() {
-        return inscripciones;
     }
 
     public void setInscripciones(List<InscripcionCarrera> inscripciones) {
@@ -94,10 +72,6 @@ public class Estudiante {
     @Override
     public String toString() {
         return nombre+", "+apellido+"\n";
-    }
-
-    public EstudianteId getEstudianteId() {
-        return estudianteId;
     }
 
     public void setEstudianteId(EstudianteId estudianteId) {

@@ -12,47 +12,21 @@ import java.util.Objects;
 
 @Embeddable
 public class InscripcionCarreraId implements Serializable {
+    private int idCarrera;
 
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "dni", referencedColumnName = "dni"),
-            @JoinColumn(name = "libretaUniversitaria", referencedColumnName = "libretaUniversitaria")
-    })
-    private Estudiante estudiante;
 
-    @ManyToOne
-    @JoinColumn(name = "carrera", referencedColumnName = "id")
-    private Carrera carrera;
+    private EstudianteId estudianteId;
 
-    // Constructores, getters y setters
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof InscripcionCarreraId)) return false;
-        InscripcionCarreraId that = (InscripcionCarreraId) o;
-        return Objects.equals(estudiante, that.estudiante) &&
-                Objects.equals(carrera, that.carrera);
+
+    public InscripcionCarreraId(int dni, int libretaUniversitaria, int idCarrera) {
+        this.estudianteId=new EstudianteId(dni,libretaUniversitaria);
+        this.idCarrera = idCarrera;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(estudiante, carrera);
+    public InscripcionCarreraId() {
+
     }
 
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
-    public Carrera getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(Carrera carrera) {
-        this.carrera = carrera;
-    }
+    ;
 }

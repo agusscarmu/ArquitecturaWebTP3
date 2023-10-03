@@ -23,10 +23,6 @@ public class InscripcionCarreraServiceImpl implements InscripcionCarreraService 
 
     @Autowired
     private InscripcionCarreraRepository icr;
-    @Autowired
-    private EstudianteRepository er;
-    @Autowired
-    private CarreraRepository cr;
 
     @Override
     public List<EstudianteDTO> obtenerEstudiantesPorCarreraYCiudad(int idCarrera, String ciudad) {
@@ -37,7 +33,7 @@ public class InscripcionCarreraServiceImpl implements InscripcionCarreraService 
     public List<InscripcionesPorAnioDTO> obtenerReporte() {
         List<InscripcionesPorAnioDTO> lista = new LinkedList<>();
 
-        for(int y = 1990; y < java.time.LocalDate.now().getYear() + 1; y++){
+        for(int y = icr.obtenerPrimerInscripcion(); y < java.time.LocalDate.now().getYear() + 1; y++){
             lista.addAll(icr.obtenerReporteCarrera(y));
         }
 
@@ -52,28 +48,19 @@ public class InscripcionCarreraServiceImpl implements InscripcionCarreraService 
 
     @Override
     public InscripcionCarrera matricular(MatriculacionDTO matriculacionDTO) {
-        InscripcionCarrera inscripcion = new InscripcionCarrera();
+        InscripcionCarrera inscripcion = new InscripcionCarrera(matriculacionDTO.getDni(),matriculacionDTO.getLibretaUniversitaria(),matriculacionDTO.getIdCarrera(),matriculacionDTO.getAntiguedad(),matriculacionDTO.isGraduado(),matriculacionDTO.getAnioInscripcion());
 
         inscripcion.setAntiguedad(matriculacionDTO.getAntiguedad());
         inscripcion.setGraduado(matriculacionDTO.isGraduado());
         inscripcion.setAnioInscripcion(matriculacionDTO.getAnioInscripcion());
 
-        Estudiante estudiante = obtenerEstudiantePorId(matriculacionDTO.getDni(),matriculacionDTO.getLibretaUniversitaria());
-        Carrera carrera = obtenerCarreraPorId(matriculacionDTO.getIdCarrera()); // Supongamos que tienes un método para obtener la carrera por su ID.
-
-        inscripcion.setEstudiante(estudiante);
-        inscripcion.setCarrera(carrera);
-
         icr.save(inscripcion);
         return inscripcion;
     }
 
-    private Estudiante obtenerEstudiantePorId(int dni, int libreta){
-        return er.buscarPorId(dni,libreta);
-    }
-
-    private Carrera obtenerCarreraPorId(int idCarrera){
-        return cr.buscarPorId(idCarrera);
+    @Override
+    public boolean existeInscripcion(MatriculacionDTO matriculacionDTO) {
+        return icr.buscarPorId(matriculacionDTO.getDni(),matriculacionDTO.getLibretaUniversitaria(),matriculacionDTO.getIdCarrera())!=null;
     }
 
 

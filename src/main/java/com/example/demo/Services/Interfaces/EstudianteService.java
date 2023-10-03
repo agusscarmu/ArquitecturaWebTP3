@@ -19,4 +19,5 @@ public interface EstudianteService {
     Estudiante darAlta(Estudiante estudiante);
 
 
+    boolean existeEstudiante(Estudiante estudiante);
 }

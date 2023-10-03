@@ -46,4 +46,9 @@ public class EstudianteServiceImpl implements EstudianteService {
         er.save(estudiante);
         return estudiante;
     }
+
+    @Override
+    public boolean existeEstudiante(Estudiante estudiante) {
+        return er.buscarPorId(estudiante.getEstudianteId().getDni(),estudiante.getEstudianteId().getLibretaUniversitaria())!=null;
+    }
 }
