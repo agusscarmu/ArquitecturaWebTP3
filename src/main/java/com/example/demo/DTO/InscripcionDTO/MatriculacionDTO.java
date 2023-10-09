@@ -15,14 +15,13 @@ public class MatriculacionDTO implements Serializable {
     private boolean graduado;  // Atributo calculado
 
     // Constructor
-    public MatriculacionDTO(int dni, int libretaUniversitaria, int idCarrera, int antiguedad, int anioInscripcion) {
+    public MatriculacionDTO(int dni, int libretaUniversitaria, int idCarrera) {
         this.dni = dni;
         this.libretaUniversitaria = libretaUniversitaria;
         this.idCarrera = idCarrera;
-        this.antiguedad = antiguedad;
-        this.anioInscripcion = anioInscripcion;
-        // Calcular graduado en el constructor
-        this.graduado = (anioInscripcion + antiguedad) >= java.time.LocalDate.now().getYear();
+        this.antiguedad = 0;
+        this.anioInscripcion = java.time.LocalDate.now().getYear();
+        this.graduado = false;
     }
 
     public int getDni() {

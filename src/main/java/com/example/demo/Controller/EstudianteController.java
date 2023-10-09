@@ -1,13 +1,11 @@
 package com.example.demo.Controller;
 
 import com.example.demo.DTO.EstudianteDTO.EstudianteDTO;
-import com.example.demo.Exceptions.EstudianteExistenteException;
-import com.example.demo.Services.EstudianteServiceImpl;
+import com.example.demo.Exceptions.EstudianteException;
 import com.example.demo.Services.Interfaces.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.Model.Estudiante;
@@ -44,12 +42,18 @@ public class EstudianteController {
     public ResponseEntity<String> crearEstudiante(@RequestBody Estudiante estudiante) {
         try{
             if(es.existeEstudiante(estudiante)){
-                throw new EstudianteExistenteException("El estudiante ya existe en la base de datos");
+                throw new EstudianteException("El estudiante ya existe en la base de datos");
+            } else if (!idValido(estudiante)) {
+                throw new EstudianteException("El estudiante no tiene un id valido");
             }
             es.darAlta(estudiante);
             return ResponseEntity.status(HttpStatus.CREATED).body("Estudiante creado exitosamente");
-        }catch (EstudianteExistenteException e) {
+        }catch (EstudianteException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
         }
+    }
+
+    private boolean idValido(Estudiante estudiante){
+        return estudiante.getEstudianteId().getDni() > 0 && estudiante.getEstudianteId().getLibretaUniversitaria() > 0;
     }
 }

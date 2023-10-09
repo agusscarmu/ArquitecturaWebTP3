@@ -4,6 +4,11 @@
 
 Este proyecto se centra en el diseño de un registro de estudiantes con la siguiente información: nombres, apellido, edad, género, número de documento, ciudad de residencia, número de libreta universitaria, carreras en las que están inscritos, antigüedad en cada una de esas carreras y si se graduaron o no. El ejercicio integrador se divide en varias funcionalidades implementadas como servicios REST.
 
+#### Base de datos utilizada
+- MySQL
+- Nombre de la base de datos: TercerEntrega
+
+
 ## Funcionalidades y Servicios REST
 
 ### a) Dar de Alta un Estudiante
